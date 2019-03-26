@@ -28,7 +28,8 @@ Finally restart the docker
 
 Run the following commands from Powershell/Terminal 
 
-```docker build -t asksina_app:1.1 . 
+```
+docker build -t asksina_app:1.1 . 
 docker run --name asksina -p 8080:8080 -d asksina_app:1.1
 ```
 then access application on ```localhost:8080/ai/login```
