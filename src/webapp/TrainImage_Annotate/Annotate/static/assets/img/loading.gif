@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Saffara ER">
+    <meta name="author" content="Sidra Medical and Research Center">
+   	<title>Saffara</title>
+
+        <link href="/static/assets/plugins/switchery/switchery.min.css" />
+        <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="/static/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <!-- Modernizr js -->
+        <script src="/static/assets/js/modernizr.min.js"></script>
+
+        <style>
+        #topnav .topbar-main {
+    background-color: #049abd !important;
+    border-bottom: 1px solid #0a829e;
+} 
+.wrapper {
+    padding-top: 90px;
+}
+body {
+    background-color: #049abd;
+}
+.page-item.active .page-link {
+    z-index: 2;
+    color: #fff;
+    background-color: #049abd;
+    border-color: #049abd;
+}
+</style>
+
+	    
+
+<style>
+.container {
+    width: 100%;
+}
+
+
+.modal-body{
+   text-align: center;
+}
+#info{
+
+      color: #ff7aa3;
+    font-size: 15px;
+    font-weight: bold;
+ 
+}
+
+#callingbtn:hover{
+ cursor: pointer;
+}
+
+#holdingbtn:hover{
+ cursor: pointer;
+}
+
+
+#unholdingbtn:hover{
+ cursor: pointer;
+}
+table#datatable {
+
+      width: 100%;
+}
+
+</style>
+
+  </head>
+    <body>
+	    
+
+
+          
+        <header id="topnav">
+            <div class="topbar-main">
+                <div class="container">
+
+                    <div class="topbar-left">
+                        <a href="/" class="logo">
+                            <i style="display:none" class="zmdi zmdi-group-work icon-c-logo"></i>
+                            <span>SAFFARA ED</span> 
+                        </a>
+                    </div>
+
+
+                    <div class="menu-extras navbar-topbar">
+
+                        <ul class="list-inline float-right mb-0 " style="padding-top: 20px;">
+
+                     <li class="list-inline-item">
+                           <span class="label label-pink" style="font-size: 95%;"> CLERK PANEL</span>
+                              
+                            </li>
+
+
+                         <li class="list-inline-item">
+                            <span style="color:white; font-weight:bold"> Triage Room 1 | </span>
+                              
+                            </li>
+
+                            <li class="list-inline-item">
+                              <span style="color:white">  Mohamed  Jama  </span>
+                              
+                            </li>
+
+                              <li class="list-inline-item">
+                              <span style="color:white"> | </span>
+                              
+                            </li>
+
+                              <li class="list-inline-item">
+                             <a href="/accounts/logout/" ><span style="color:white">  Logout</span> </a>
+                              
+                            </li>
+
+                        </ul>
+
+                    </div> 
+                    <div class="clearfix"></div>
+
+                </div> 
+            </div>
+        
+        </header>
+
+
+                  
+                       <div class="wrapper">
+                            <div class="container"> 
+      								   
+
+ <div class="row">
+                    <div class="col-12">
+                        <div class="card-box table-responsive">
+                            <h4 class="m-t-0 header-title" style="display:none"><b></b></h4>
+                            <p class="text-muted font-13 m-b-0" style="display:none">
+                            
+                            </p>
+
+                            <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>MRN</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>EID</th>
+                                    <th>Queue No</th>
+                                    <th>Arrival Date</th>
+                                    <th>Arrival Time</th>
+                                    <th>Birthdate</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+
+                                   
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+
+                         
+                                
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- end row -->
+
+
+
+                            <div class="modal fade calling" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-body">
+
+                                         <h5 class="modal-title" id="mySmallModalLabel">Please Wait</h5> <br>
+
+                                           <p id="info"> Calling patient.....
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        <div class="modal fade holding" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-body">
+
+                                         <h5 class="modal-title" id="mySmallModalLabel">Please Wait</h5> <br>
+
+                                           <p id="info"> putting patient on hold.....
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+
+
+  <div class="modal fade unholding" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-body">
+
+                                         <h5 class="modal-title" id="mySmallModalLabel">Please Wait</h5> <br>
+
+                                           <p id="info"> Removing Patient from hold....
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        
+
+                            </div>
+                          </div>
+
+      						  <footer class="footer" style="color:white">
+                   Developed by CMIST, Sidra
+            </footer>
+      						 
+           
+          
+	
+	    
+    
+        <script src="/static/assets/js/jquery.min.js"></script>
+        <script src="/static/assets/js/tether.min.js"></script>
+        <script src="/static/assets/js/bootstrap.min.js"></script>
+        <script src="/static/assets/js/waves.js"></script>
+        <script src="/static/assets/js/jquery.nicescroll.js"></script>
+        <script src="/static/assets/plugins/switchery/switchery.min.js"></script>
+        <script src="/static/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/static/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="/static/assets/js/jquery.core.js"></script>
+        <script src="/static/assets/js/jquery.app.js"></script>
+        <script src="/static/assets/pages/jquery.dashboard.js"></script>
+        <script src="/static/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="/static/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+	    
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+
+             $.fn.dataTable.ext.errMode = 'none';
+
+  var table=  $('#datatable').DataTable({
+          deferRender: true,
+          dom: "Bfrtlip",
+          "oLanguage": {  "sEmptyTable": "<div style='padding:50px'> No Encounters Available </div>", "sProcessing": "<span> <img style='width:60px' src='/static/img/loading.gif' /></span>"},
+          ajax: "/encounter/ajax/",
+          //"order": [[ 2, "desc" ]],
+         //"serverSide": true,
+          "processing": true,
+          "lengthMenu": [ 25, 50, 75, 100, 250],
+});
+
+         $('body').on('hidden.bs.modal', '.calling', function () {
+        $(this).removeData('bs.modal');
+      });
+
+$(document).on('click','#datatable tr  #callingbtn',function(e){
+
+  e.preventDefault();
+
+  var encounter = $(this).data('encounter');
+
+  if (!encounter){
+    return;
+  }
+
+   $('.calling').modal('show') ;
+
+        $.post('/encounter/call/patient/', { 
+          encounter: encounter, 
+        })
+
+    .done(function(data, textStatus, jqXHR) {
+
+         table.ajax.url( "/encounter/ajax/").load(null, false);
+          setTimeout(function(){
+
+          
+
+              $(".calling").modal('hide') ;
+
+        }, 1000);
+
+      })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      
+        setTimeout(function(){
+
+            $(".calling").modal('hide') ;
+       
+
+        }, 1000);
+
+      });
+
+
+
+
+  
+});
+
+
+
+
+
+
+$(document).on('click','#datatable tr  #unholdingbtn',function(e){
+
+  e.preventDefault();
+
+  var encounter = $(this).data('encounter');
+
+  if (!encounter){
+    return;
+  }
+
+   $('.unholding').modal('show') ;
+
+        $.post('/encounter/hold/patient/', { 
+          encounter: encounter, 
+        })
+
+    .done(function(data, textStatus, jqXHR) {
+
+       table.ajax.url( "/encounter/ajax/").load(null, false);
+          setTimeout(function(){
+
+
+              $(".unholding").modal('hide') ;
+
+        }, 1000);
+
+      })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      
+        setTimeout(function(){
+
+            $(".unholding").modal('hide') ;
+       
+
+        }, 1000);
+
+      });
+
+
+
+
+  
+});
+
+$(document).on('click','#datatable tr  #holdingbtn',function(e){
+
+  e.preventDefault();
+
+  var encounter = $(this).data('encounter');
+
+  if (!encounter){
+    return;
+  }
+
+   $('.holding').modal('show') ;
+
+        $.post('/encounter/hold/patient/', { 
+          encounter: encounter, 
+        })
+
+    .done(function(data, textStatus, jqXHR) {
+       table.ajax.url( "/encounter/ajax/").load(null, false);
+
+          setTimeout(function(){
+
+              $(".holding").modal('hide') ;
+
+        }, 1000);
+
+      })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      
+        setTimeout(function(){
+
+            $(".holding").modal('hide') ;
+       
+
+        }, 1000);
+
+      });
+
+
+
+
+  
+});
+
+
+
+
+
+
+
+$(document).on('click','#datatable tr  #holdingbtn',function(){
+
+   var encounter = $(this).data('encounter');
+
+    if (!encounter){
+    return;
+  }
+
+
+});
+
+
+ 
+
+});
+
+
+</script>
+
+ 
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block head_title %}asksina.ai{% endblock %}
+{% block extra_head %}
+
+<style>
+
+.container {
+ width: 100%;
+}
+
+#topnav{
+  display:none;
+}
+
+.wrapper-page .card-box {
+	border: 0px solid #64b0f2; 
+}
+
+.account-pages {
+	background: #049abd;
+}
+
+.error-info{
+	font-size:12px; 
+	text-align:center;
+	color: red;
+}
+.account-pages {
+	background:transparent;
+}
+
+.wrapper-page {
+    /* margin: 5% auto; */
+    position: relative;
+    max-width: 480px;
+    margin-top: 15% !important;
+    margin-left:0% !important;
+} 
+.footer {
+	border-top:  1px solid #23ab9a;
+	bottom: 0px;
+	text-align: center;
+	padding: 20px 0px;
+	position: absolute;
+	right: 0px;
+	left: 0px;
+}
+
+body {
+	background-image: url('/static/assets/img/sina_background.jpg'); 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.label-primary {
+	background-color: #23ab9a;
+}
+</style>
+<script>
+	function create_session(){
+		username = document.getElementById('id_login').value
+		password = document.getElementById('id_password').value
+		if(username && password){
+			sessionStorage.setItem('username', username);
+			sessionStorage.setItem('password', password);
+			}
+		else{
+			window.location = 'http://10.30.39.194:8001/ai/login/'
+		}
+	}
+</script>
+{% endblock %}    
+{% block content %}
+
+ <div class="account-pages"></div>
+
+		<div class="clearfix"></div>
+		<div class="wrapper-page">
+		 <div class="account-bg">
+			
+			<div class="card-box mb-0">
+				<div class="text-center m-t-20">
+					<a href="/" class="logo">
+					   <img src="/static/assets/img/sina_logo.png" style="width:240px"/>
+					 
+					</a>
+				</div>
+				<div class="m-t-10 p-20">
+					<div class="row">
+						<div class="col-12 text-center">
+							<h6 class="text-muted text-uppercase m-b-0 m-t-0">Sign In</h6>
+						</div>
+					</div>
+
+						{% if messages %}
+							<div class="row">
+								<div class="col-12 text-center">
+									{% for message in messages %}
+									<span class="error-info"> <p>{{ message }}</p> </span>
+									 {% endfor %}
+								</div>
+							</div>
+						{% endif %}
+
+					<form class="m-t-20" method="post" action="/ai/checklogin/"  autocomplete="off" id="login-form"> 
+						<div class="form-group row">
+							<div class="col-12">
+								<input class="form-control" id="id_login"  autocomplete="off"   autofocus type="text" class="form-control" id="id_login" name="login" required placeholder="Enter Username">
+							</div>
+
+						</div>
+
+					
+
+
+						<div class="form-group row">
+							<div class="col-12">
+								<input class="form-control" id="id_password" autocomplete="new-password" type="password"  class="form-control"  name="password" required  placeholder="Enter Password">
+							</div>
+						</div>
+
+
+						<div class="form-group text-center row m-t-10">
+							<div class="col-12">
+								<button class="btn btn-block waves-effect waves-light"  onclick="create_session()" type="submit" id="login">Log In</button>
+							</div>
+						</div>
+
+					</form>
+
+				</div>
+
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			</div>
+
+{% endblock %}
+
+{% block extra_body %}
+{% endblock %}

@@ -1,0 +1,118 @@
+.container {
+    width: 90%;
+}
+
+
+select option {
+    margin: 40px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+select option:hover {
+    background-color: : #23ab9a;
+}
+
+.btn-outline-primary {
+    color: #ffffff;
+    background-image: none;
+    background-color: transparent;
+    border-color: #f7f7f7;
+}
+
+.btn-outline-primary:hover {
+    background-color: #23ab9a;
+}
+
+
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.focus, .btn-outline-primary:active, .btn-outline-primary:focus, .btn-outline-primary:hover, .open > .dropdown-toggle.btn-outline-primary {
+    color: #ffffff;
+    background-color: #ff7aa3;
+    border-color: #ff7aa3;
+}
+
+.inputLabel {
+    font-size:40px;
+    color:white;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+.inputText {
+    height: 80px;
+    font-size: 2.5em; 
+    text-align: center;
+}
+
+#registerBtn, #updateBtn {
+    font-weight:bold; 
+    font-size:30px; 
+    padding:20px; 
+    width:50%;
+    margin-top:20px   
+}
+
+.hiddenField {
+    visibility: hidden;
+}
+
+.priority {
+    font-size:40px;
+    font-weight: bold;
+}
+
+.small-text {
+    font-size:18px;
+}
+
+h1 { 
+
+    font-size: 1em;  
+}
+
+.display-custom { 
+    font-size: 2.5em !important; 
+    color: #23ab9a; 
+}
+
+.text-centered {
+    text-align: center;
+}
+
+.no-overflow-x {
+    overflow-x:hidden;
+}
+
+/*.table-responsive {
+    display: table;
+}*/
+
+.queue-element {
+    border-top: 0px !important;
+}
+
+#newModal {
+    margin-top: 10%;
+}
+
+.wrapper {
+    padding-top: 60px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  body #printData{
+
+    border:1px solid red;
+    position: absolute;
+    top:0;
+  }
+  body #printData  *{
+    visibility: visible !important;
+
+    }
+    #printData .printTicket {
+    visibility: visible !important;
+  }
+}

@@ -1,0 +1,199 @@
+{% load static %}
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Ask Sina">
+    <meta name="author" content="Baljit Singh">
+    <title>{% block head_title %}{% endblock %}</title>
+
+    <link href="/static/assets/plugins/switchery/switchery.min.css" />
+    <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/static/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/static/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/static/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- Modernizr js -->
+
+
+    <style>
+    #content { 
+      overflow:auto; 
+      width: 600px; 
+      background: gray; 
+    } 
+
+    #left, #right { 
+    /*  width: 40%; 
+      margin:5px; 
+      padding: 1em; 
+      background: white; */
+    } 
+
+    #left  { float:left;  }
+    #right { float:right; } 
+
+    </style>
+    <script src="/static/assets/js/modernizr.min.js"></script>
+
+    {% block extra_head %}{% endblock %}
+</head>s
+<body style="background-color:black">
+{% block body %}
+
+    {% block content %}
+        <div id="wrapper" style="position: relative;width: 100%;height: 100vh;margin: 0; padding: 0;">
+
+            <div id="main_row" class="row m-0">
+                <div id="left-bar" class="col-2">
+                    <div>
+                        <a id="prev_btn" style="margin-left:10%;" onclick="back()">
+                            <img src="/static/assets/img/left-arrow.png"/>
+                        </a>
+<!--                         <div>
+                            <button type="button" class="btn btn-sm" style="border:1px solid black;margin-left:15%;margin-top:20%;" onclick="invertColors();">Invert</button>
+                            <button type="button" class="btn btn-sm reset" style="border:1px solid black;margin-left:5%;margin-top:20%;" onclick="zoomImg();">Zoom Reset</button>
+
+                            <button type="button" class="btn btn-sm" style="border:1px solid black;margin-left:5%;margin-top:20%;" onclick="switchImage();">CAM</button>
+                        </div> -->
+
+                        <div >
+                            <h4 id="feedback_heading" >Your Feedback:  <a class="center-block btn btn-default annotation-btn" id="annotation"  style="background-color:white; color:black;margin-top: 5px; text-align:center;  ">
+                            
+                        </a></h4>
+                        </div>
+
+                        <div>
+                            <h6 id="shortbuts"> KEYBOARD SHORTBUTS </h6>
+                            <ul style="margin-left:15%;margin-top:0%;border:1px solid white; list-style:none; padding:10px">
+                                <li style="color:white"> A : Abnormal </li>
+                                <li style="color:white"> N : Normal </li>
+                                <li style="color:white"> Space Bar : Not Clear </li>
+                                <li style="color:white"> Z : Reset Zoom </li>
+                                <li style="color:white"> I : Invert </li>
+                                <li style="color:white"> C : Show/Hide CAM </li>
+                            </ul>
+                        </div>
+
+                        <button type="button" class="btn" style="border:1px solid black;margin-left:35%;margin-top:20%;" onclick="location.href='/ai/uploadType/xray';">Finish</button>
+                    </div>
+                </div>
+
+                <div class="col-8" >
+                    <div id="wrapper" >
+                        <canvas id="annotation_image" data-image=""></canvas>
+                        <!--<img id="annotation_image" src="{{path}}" alt="{{file_name}}" style="width:100%;height:100%;object-fit:contain;">-->
+                        <img id="loading" src="/static/assets/img/loading_white.gif" style="width:90%;height:90%;object-fit:contain;">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <h4 id="counter" style="color:white; bottom:0px; right:0px"></h4>
+                    <a id="next_btn" class="controls" style="top:5%; background:transparent; border:none" onclick="forward()">
+                        <img id="right_arrow_btn" style="" src="/static/assets/img/right-arrow.png"/>
+                    </a>
+                    <div class="btn-group-vertical" id="annotate_btn" style="">
+                        <a class="center-block btn btn-default annotation-btn" onclick="clicked(1)" style="background-color:white; border-color:#398439; color:#449d44; text-align:center;  ">
+                            NORMAL
+                        </a>
+                        <a class="center-block btn btn-default annotation-btn" onclick="clicked(0)" style="background-color:white; border-color:#ac2925; color:#c9302c; text-align:center;">
+                            ABNORMAL
+                        </a>
+                        <a class="center-block btn btn-default annotation-btn" onclick="clicked(2)" style="background-color:white; border-color:#204d74; color:#286090; text-align:center;">
+                            NOT CLEAR
+                        </a>
+                        <a class="center-block btn btn-default annotation-btn" style="background-color:transparent; border-color:transparent; color:transparent; bottom:50px; position:relative;">
+                          
+                        </a>
+                        <!-- <textarea id="comment_box">Enter comments(if any)</textarea> -->
+                    </div>
+<!--  style="margin-right:50px; position:relative; margin-top:250px; left:17px;" -->
+                     <div class="controls">
+                        <ul class="list-inline text-center m-0">
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm heatmap toolbar" onclick="switchImage();">
+                                    <span><img src='/static/assets/img/heatmap.png' id='heatmap' style="width:25px; height:25px;"> Show Cam</span>
+                                </button>
+                            </li>
+
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm toolbar" onclick="invertColors();">
+                                    <span><img src='/static/assets/img/invert-colors.png' id='invert' style="width:25px; height:25px;">  Invert Image</span>
+                                </button>
+                            </li>
+
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm toolbar " onclick="toggleCircle('green')">
+                                    <span><img src='/static/assets/img/normal_pencil.png' id="redPencil" style="width:25px; height:25px;"> Missing Image</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm toolbar" onclick="toggleCircle('red')">
+                                    <span><img src='/static/assets/img/normal_pencil.png'  id="greenPencil" style="width:25px; height:25px;"> Wrong CAM</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm toolbar center-block" onclick="reset()">
+                                    <span style="font-size:12px;"><img src='/static/assets/img/trash.png'  style="width:25px; height:25px;"> Erase Drawing</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm toolbar zoom-in">
+                                     <span><img src='/static/assets/img/zoom_in.svg'  style="width:25px; height:25px;"> Zoom In</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm toolbar zoom-out">
+                                    <span><img src='/static/assets/img/zoom_out.png'  style="width:25px; height:25px;"> Zoom Out</span>
+                                </button>
+                            </li>
+
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm toolbar reset"">
+                                    <span><img src='/static/assets/img/zoom_reset.png'  style="width:25px; height:25px;"> Reset Zoom</span>
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                   <!-- </div> -->
+
+
+
+
+    {% endblock %}
+
+{% endblock %}
+
+<script src="/static/assets/js/jquery.min.js"></script>
+<script src="/static/assets/js/tether.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+<script src="/static/assets/js/waves.js"></script>
+<script src="/static/assets/js/jquery.nicescroll.js"></script>
+<script src="/static/assets/plugins/switchery/switchery.min.js"></script>
+<script src="/static/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/static/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="/static/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+<script src="/static/js/jquery.panzoom.min.js"></script>
+<script src="/static/js/canvas.js"></script>
+{% block extra_body %}
+{% endblock %}
+
+</body>
+</html>
