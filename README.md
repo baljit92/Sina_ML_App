@@ -7,7 +7,7 @@
 
 3. For annotation, copy the required folders
 
-## using linux 
+## Using Linux 
 ```apt update 
 apt install docker.io
 sudo docker build -t app:1.0 . 
