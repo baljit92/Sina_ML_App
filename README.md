@@ -10,8 +10,8 @@
 ## Using Linux OS
 ```apt update 
 apt install docker.io
-sudo docker build -t app:1.0 . 
-sudo docker run --name test1 -p 8080:8080 -d app:1.0
+sudo docker build -t asksina_app:1.0 . 
+sudo docker run --name asksina -p 8080:8080 -d asksina_app:1.0
 ```
 then access application on ```localhost:8080/ai/login```
 
@@ -41,11 +41,11 @@ if you want to mount another weights file then ( otherwise you don't need this s
 make sure weights are at /data on your machine so it can be mounted inside container
 
 **on Linux/MacOS**
-```sh sudo docker run --name test1 -v /data:/data -p 8080:8080 -d app:1.0```
+```sh sudo docker run --name asksina -v /data:/data -p 8080:8080 -d asksina_app:1.0```
 
 **on Windows** 
 
-if it is on ```"C:/data``` then ``` docker run --name test1 -v c:/data:/data -p 8080:8080 -d app:1.0```
+if it is on ```"C:/data``` then ``` docker run --name test1 -v c:/data:/data -p 8080:8080 -d asksina_app:1.0```
 
 otherwise replace ```"c:/data"``` with your other drive like ```"d:/data"```
 
@@ -54,4 +54,4 @@ Setup CUDA and cudaNN
 
 ```apt-get install -y nvidia-container-runtime-hook``` <--- this is run time by nvidia
 
-```sudo docker run --name test1 --runtime=nvidia -v /data:/data -p 8080:8080 -d app:1.0```
+```sudo docker run --name asksina --runtime=nvidia -v /data:/data -p 8080:8080 -d app:1.0```
